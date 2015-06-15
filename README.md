@@ -1,12 +1,12 @@
 # Manual Classification
 
-This repository contains python scripts that can be used for manually classifying tweets in a mongodb.
+This repository contains python scripts that can be used for manually classifying tweets from a MongoDB.
 
 -----------------------
 
 ### Config file
 
-You need a `config.json` file in order to run the scripts. It will contain all the parameters characteristic your data, as well as your mongodb setup. 
+You need a `config.json` file in order to run the scripts. It will contain all the parameters of your data (keys, tags, etc.) as well as your mongodb setup. 
 > Here is a sample configuration:
 
 ```json
@@ -16,14 +16,14 @@ You need a `config.json` file in order to run the scripts. It will contain all t
     "port": 27017
   },
   "db" : {
-  	"name": databaseName,
-  	"collection": collectionName,
-  	"username": yourUsername,
-  	"password": yourPassword
+  	"name": "myDatabase",
+  	"collection": "myCollection",
+  	"username": "myUsername",
+  	"password": "myPassword"
 	},
   "tweets" : {
-    "text": tweetTextKey,
-    "author": tweetAuthorKey
+    "text": "tweetTextKey",
+    "author": "tweetAuthorKey"
   }
 }
 ```
