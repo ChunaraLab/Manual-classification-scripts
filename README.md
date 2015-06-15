@@ -4,7 +4,7 @@ This repository contains python scripts that can be used for manually classifyin
 
 -----------------------
 
-### Config file
+## Config file
 
 You need a `config.json` file in order to run the scripts. It will contain all the parameters of your data (keys, tags, etc.) as well as your mongodb setup. 
 > Here is a sample configuration:
@@ -27,3 +27,16 @@ You need a `config.json` file in order to run the scripts. It will contain all t
   }
 }
 ```
+
+## tag-keyword.py
+.
+
+## mass-tag.py
+.
+
+## simple-tagging.py
+.
+
+## TO-DO
+
+* Add tags / classes in `config.json`

@@ -2,7 +2,7 @@ import pymongo, sys, json
 from pymongo import MongoClient
 
 ###############################################
-# Run as `python tag-keyword.py searchkeyword`
+# Run as `python simple-tagging.py`
 ###############################################
 
 # Load config from JSON
@@ -18,20 +18,13 @@ collection = json['db']['collection']
 tweetText = json['tweets']['text']
 tweetAuthor = json['tweets']['author']
 
-# Stop if no keyword arguments
-if len(sys.argv) == 1:
-	sys.exit('\nRun script as: \'python script.py keyword\' to search DB.')
-
 # Finding tweets based on Regex
-keyword = sys.argv[1]
-regex = '.*' + keyword + '.*'
-matches = db[collection].find({'lang':'en', 'newtag': { '$exists': True, '$nin': ["3", "2", "1", "4", 1, 2, 3, 4]}, tweetText: { '$regex': regex } } )
+matches = db.hpv.find({'lang':'en', 'newtag': { '$exists': True, '$nin': ["3", "2", "1", "4", 1, 2, 3, 4]} }).limit(500)
 length = matches.count()
 
 # Exit if no tweets found
 if length == 0:
 	sys.exit('No tweets found.')
-raw_input('Found {1} untagged tweets with keyword \'{0}\' (ENTER to continue) '.format(keyword, length))
 
 print '\nLet\'s start tagging. Enter 0 to STOP. \n'
 
@@ -41,7 +34,7 @@ for tweet in matches:
 	valid_tags = set([1, 2, 3, 4])
 	newtag = input('Tag (Positive=4, Negative=2, Neutral=1, Unrelated=3): ')
 	if newtag in valid_tags:
-		db[collection].update({ '_id':tweet['_id']}, {'$set':{ 'newtag':newtag }}, upsert=False, multi=False)
+		db.hpv.update({ '_id':tweet['_id']}, {'$set':{ 'newtag':newtag }}, upsert=False, multi=False)
 	else:
 		if newtag == 0:
 			print '\nAlright, see you later.'
