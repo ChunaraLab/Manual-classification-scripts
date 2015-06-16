@@ -58,8 +58,15 @@ Lets you perform a mass tag on tweets matching a regex. Useful when running into
 python mass-tag.py '.*someregex.*' tag
 ```
 
+## db-stats.py
+
+Simple script to print a few stats about the tagging state of the database.
+
+```bash
+python db-stats.py
+```
+
 ## TO-DO
 
-[ ] Add tags / classes in `config.json`
-
-[ ] Ability to input tag and move to next without the need of hitting the RETURN key.
+- [ ] Generalize tags / classes in `config.json` (currently only works with 1,2,3,4 tags)
+- [ ] Ability to enter tag without RETURN key (move to next in cursor after inputting only 1 char).
