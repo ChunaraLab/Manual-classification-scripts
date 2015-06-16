@@ -26,7 +26,7 @@ if len(sys.argv) < 3:
 # Check how many and give option to stop
 regex = sys.argv[1]
 newtag = sys.argv[2]
-matches = db.hpv.find({'lang':'en', 'newtag': { '$exists': True, '$nin': ["3", "2", "1", "4", 1, 2, 3, 4]}, tweetText: { '$regex': regex } } )
+matches = db.hpv.find({'lang':'en', 'newtag': { '$exists': True, '$nin': [1, 2, 3, 4]}, tweetText: { '$regex': regex } } )
 
 # Exit if no tweets found
 if matches.count() == 0:
@@ -37,5 +37,5 @@ raw_input('Found {0} untagged tweets with regex {1} (ENTER to set tag:{2} for AL
 for tweet in matches:
 	db.hpv.update({ tweetID:tweet[tweetID]}, {'$set':{ 'newtag':newtag }}, upsert=False, multi=True)
 print 'Done! Running query again to check:'
-matches = db.hpv.find({'lang':'en', 'newtag': { '$exists': True, '$nin': ["3", "2", "1", "4", 1, 2, 3, 4]}, 't': { '$regex': regex } } )
+matches = db.hpv.find({'lang':'en', 'newtag': { '$exists': True, '$nin': [1, 2, 3, 4]}, 't': { '$regex': regex } } )
 print 'There are {0} untagged tweets now.'.format(matches.count())

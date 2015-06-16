@@ -26,7 +26,7 @@ if len(sys.argv) == 1:
 # Finding tweets based on Regex
 keyword = sys.argv[1]
 regex = '.*' + keyword + '.*'
-matches = db[collection].find({'lang':'en', 'newtag': { '$exists': True, '$nin': ["3", "2", "1", "4", 1, 2, 3, 4]}, tweetText: { '$regex': regex } } )
+matches = db[collection].find({'lang':'en', 'newtag': { '$exists': True, '$nin': [1, 2, 3, 4]}, tweetText: { '$regex': regex } } )
 length = matches.count()
 
 # Exit if no tweets found

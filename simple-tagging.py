@@ -20,7 +20,7 @@ tweetAuthor = json['tweets']['author']
 tweetID     = json['tweets']['id']
 
 # Finding tweets based on Regex
-matches = db.hpv.find({'lang':'en', 'newtag': { '$exists': True, '$nin': ["3", "2", "1", "4", 1, 2, 3, 4]} }).limit(500)
+matches = db.hpv.find({'lang':'en', 'newtag': { '$exists': True, '$nin': [1, 2, 3, 4]} }).limit(500)
 length = matches.count()
 
 # Exit if no tweets found
