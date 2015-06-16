@@ -18,9 +18,10 @@ collection  = json['db']['collection']
 tweetText   = json['tweets']['text']
 tweetAuthor = json['tweets']['author']
 tweetID     = json['tweets']['id']
+tagField    = json['tweets']['tag']
 
 # Finding tweets based on Regex
-matches = db.hpv.find({'lang':'en', 'newtag': { '$exists': True, '$nin': [1, 2, 3, 4]} }).limit(500)
+matches = db.hpv.find({'lang':'en', tagField: { '$exists': True, '$nin': [1, 2, 3, 4]} }).limit(500)
 length = matches.count()
 
 # Exit if no tweets found
@@ -35,7 +36,7 @@ for tweet in matches:
 	valid_tags = set([1, 2, 3, 4])
 	newtag = input('Tag (Positive=4, Negative=2, Neutral=1, Unrelated=3): ')
 	if newtag in valid_tags:
-		db.hpv.update({ tweetID:tweet[tweetID]}, {'$set':{ 'newtag':newtag }}, upsert=False, multi=False)
+		db.hpv.update({ tweetID:tweet[tweetID]}, {'$set':{ tagField:newtag }}, upsert=False, multi=False)
 	else:
 		if newtag == 0:
 			print '\nAlright, see you later.'
