@@ -14,9 +14,10 @@ client = MongoClient(json['mongodb']['host'], json['mongodb']['port'])
 db = client['admin']
 db.authenticate(json['db']['username'], json['db']['password'])
 db = client[json['db']['name']]
-collection = json['db']['collection']
-tweetText = json['tweets']['text']
+collection  = json['db']['collection']
+tweetText   = json['tweets']['text']
 tweetAuthor = json['tweets']['author']
+tweetID     = json['tweets']['id']
 
 # Stop if no keyword arguments
 if len(sys.argv) == 1:
@@ -41,7 +42,7 @@ for tweet in matches:
 	valid_tags = set([1, 2, 3, 4])
 	newtag = input('Tag (Positive=4, Negative=2, Neutral=1, Unrelated=3): ')
 	if newtag in valid_tags:
-		db[collection].update({ '_id':tweet['_id']}, {'$set':{ 'newtag':newtag }}, upsert=False, multi=False)
+		db[collection].update({ tweetID:tweet[tweetID]}, {'$set':{ 'newtag':newtag }}, upsert=False, multi=False)
 	else:
 		if newtag == 0:
 			print '\nAlright, see you later.'
