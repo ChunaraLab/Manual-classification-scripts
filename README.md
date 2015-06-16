@@ -2,6 +2,12 @@
 
 This repository contains python scripts that can be used for manually classifying tweets from a MongoDB.
 
+### Getting Started
+
+* Clone: `git clone https://github.com/ChunaraLab/Manual-classification-scripts.git`
+* Create config file (*see below*): `vi config.json`
+* Run a script and tag away!
+
 -----------------------
 
 ## Config file
@@ -28,15 +34,32 @@ You need a `config.json` file in order to run the scripts. It will contain all t
 }
 ```
 
+## simple-tagging.py
+
+Straightforward manual tagging looping through the tweets.
+
+```bash
+python simple-tagging.py
+```
+
 ## tag-keyword.py
-.
+
+Lets you tag tweets based on a simple keyword search.
+
+```bash
+python tag-keyword.py 'searchKeyword'
+```
 
 ## mass-tag.py
-.
 
-## simple-tagging.py
-.
+Lets you perform a mass tag on tweets matching a regex. Useful when running into a frequent pattern (such as retweets).
+
+```bash
+python mass-tag.py '.*someregex.*' tag
+```
 
 ## TO-DO
 
-* Add tags / classes in `config.json`
+[ ] Add tags / classes in `config.json`
+
+[ ] Ability to input tag and move to next without the need of hitting the RETURN key.
